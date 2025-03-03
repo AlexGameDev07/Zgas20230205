@@ -1,16 +1,16 @@
 //import mongoose module
 import mongoose from "mongoose";
 
-//save db url in a constant
-const uri = "mongodb://localhost:27017/zgasdb";
+//import config with the variables
+import {config} from "./src/config.js";
 
 //create a connection to the database
-mongoose.connect(uri);
+mongoose.connect(config.MONGO_URI);
 
 //check connection status
 const connection = mongoose.connection;
 
-connection.once("open", () => {console.log("MongoDB database connection established successfully")});
+connection.once("open", () => {console.log("MongoDB database connection established successfully :D")});
 
 connection.on("disconnected", () => {console.log("MongoDB connection disconnected")});
 
