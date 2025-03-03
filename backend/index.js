@@ -1,6 +1,9 @@
 //* Import the app.js file
 import app from './app.js';
 
+// Import the database.js file
+import "./database.js";
+
 //*Create a sever function
 async function main(){
     const PORT = 4000;
