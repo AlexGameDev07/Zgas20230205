@@ -1,10 +1,10 @@
-//Metodos del CRUD
+//Method del CRUD
 
-//Crear un array de funciones
+//Create un array de functions
 const productsControllers = {};
 import productsModel from "../models/Products.js";
 
-//SELECT
+//*SELECT
 productsControllers.getProducts = async (req, res) => {
     try {
         const products = await productsModel.find();
@@ -14,7 +14,7 @@ productsControllers.getProducts = async (req, res) => {
     }
 }
 
-//INSERT
+//*INSERT
 productsControllers.postProduct = async (req, res) => {
     const {name, description, price, stock} = req.body;
     const newProduct = new productsModel({name, description, price, stock});
@@ -27,10 +27,11 @@ productsControllers.postProduct = async (req, res) => {
     }
 }
 
-//UPDATE
-productsControllers.updateProduct = async (req, res) => {
+//*UPDATE
+productsControllers.putProduct = async (req, res) => {
+    const {name, description, price, stock} = req.body;
     try {
-        await productsModel.findByIdAndUpdate(req.params.id, req.body);
+        const updatedProducts = await productsModel.findByIdAndUpdate(req.params.id, {name, description, price, stock}, {new: true});
         res.status(200).json({ message: "Product updated successfully" });
     }
     catch (error) {
@@ -38,7 +39,7 @@ productsControllers.updateProduct = async (req, res) => {
     }
 }
 
-//DELETE
+//*DELETE
 productsControllers.deleteProduct = async (req, res) => {
     try {
         await productsModel.findByIdAndDelete(req.params.id);
@@ -48,3 +49,5 @@ productsControllers.deleteProduct = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 }
+
+export default productsControllers;
