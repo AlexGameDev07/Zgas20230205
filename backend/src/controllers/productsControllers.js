@@ -18,13 +18,9 @@ productsControllers.getProducts = async (req, res) => {
 productsControllers.postProduct = async (req, res) => {
     const {name, description, price, stock} = req.body;
     const newProduct = new productsModel({name, description, price, stock});
-    try {
-        await newProduct.save();
-        res.status(201).json(newProduct);
-        res.status(201).json({ message: "Product created successfully" });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
+    await newProduct.save();
+    res.json({message:"furuló"})
+   
 }
 
 //*UPDATE
