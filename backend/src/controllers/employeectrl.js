@@ -2,7 +2,7 @@
 
 //Create un array de functions
 const employeesControllers = {};
-import employeesmdl from "../models/employees.js";
+import employeesmdl from "../models/employeesmdl.js";
 
 //*SELECT
 employeesControllers.getEmployee = async (req, res) => {
