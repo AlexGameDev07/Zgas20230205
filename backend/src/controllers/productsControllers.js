@@ -16,18 +16,18 @@ productsControllers.getProducts = async (req, res) => {
 
 //*INSERT
 productsControllers.postProduct = async (req, res) => {
-    const {name, description, price, stock} = req.body;
-    const newProduct = new productsModel({name, description, price, stock});
+    const { name, description, price, stock } = req.body;
+    const newProduct = new productsModel({ name, description, price, stock });
     await newProduct.save();
-    res.json({message:"furuló"})
-   
+    res.json({ message: "furuló" })
+
 }
 
 //*UPDATE
 productsControllers.putProduct = async (req, res) => {
-    const {name, description, price, stock} = req.body;
+    const { name, description, price, stock } = req.body;
     try {
-        const updatedProducts = await productsModel.findByIdAndUpdate(req.params.id, {name, description, price, stock}, {new: true});
+        const updatedProducts = await productsModel.findByIdAndUpdate(req.params.id, { name, description, price, stock }, { new: true });
         res.status(200).json({ message: "Product updated successfully" });
     }
     catch (error) {
