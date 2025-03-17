@@ -17,7 +17,7 @@ customersControllers.getCustomer = async (req, res) => {
 //*INSERT
 customersControllers.postCustomer = async (req, res) => {
    const { name, description, price, stock } = req.body;
-   const newEmploye = new customersModel({ name, description, price, stock });
+   const newEmploye = new customersmdl({ name, description, price, stock });
    await newEmploye.save();
    res.json({ message: "furuló" })
 
@@ -27,7 +27,7 @@ customersControllers.postCustomer = async (req, res) => {
 customersControllers.putCustomer = async (req, res) => {
    const { name, description, price, stock } = req.body;
    try {
-      const updatedCustomers = await customersModel.findByIdAndUpdate(req.params.id, { name, description, price, stock }, { new: true });
+      const updatedCustomers = await customersmdl.findByIdAndUpdate(req.params.id, { name, description, price, stock }, { new: true });
       res.status(200).json({ message: "Employe updated successfully" });
    }
    catch (error) {

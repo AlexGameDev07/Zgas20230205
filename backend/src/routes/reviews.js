@@ -13,4 +13,3 @@ router.route("/:id")
    .delete(reviewCtrl.deleteReview)
 
 export default router;
-
