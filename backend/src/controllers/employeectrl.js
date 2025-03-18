@@ -16,8 +16,8 @@ employeesControllers.getEmployee = async (req, res) => {
 
 //*INSERT
 employeesControllers.postEmployee = async (req, res) => {
-   const { name, description, price, stock } = req.body;
-   const newEmploye = new employeesModel({ name, description, price, stock });
+   const { name, lastName, birthDay, email, address, hireDate, password, telephone, dui, isssNumber, isVerified } = req.body;
+   const newEmploye = new employeesmdl({ name, lastName, birthDay, email, address, hireDate, password, telephone, dui, isssNumber, isVerified });
    await newEmploye.save();
    res.json({ message: "furuló" })
 
@@ -25,9 +25,9 @@ employeesControllers.postEmployee = async (req, res) => {
 
 //*UPDATE
 employeesControllers.putEmploye = async (req, res) => {
-   const { name, description, price, stock } = req.body;
+   const { name, lastName, birthDay, email, address, hireDate, password, telephone, dui, isssNumber, isVerified } = req.body;
    try {
-      const updatedEmployees = await employeesModel.findByIdAndUpdate(req.params.id, { name, description, price, stock }, { new: true });
+      const updatedEmployees = await employeesmdl.findByIdAndUpdate(req.params.id, { name, lastName, birthDay, email, address, hireDate, password, telephone, dui, isssNumber, isVerified }, { new: true });
       res.status(200).json({ message: "Employe updated successfully" });
    }
    catch (error) {
@@ -38,7 +38,7 @@ employeesControllers.putEmploye = async (req, res) => {
 //*DELETE
 employeesControllers.deleteEmploye = async (req, res) => {
    try {
-      await employeesModel.findByIdAndDelete(req.params.id);
+      await employeesmdl.findByIdAndDelete(req.params.id);
       res.status(200).json({ message: "Employe deleted successfully" });
    }
    catch (error) {
