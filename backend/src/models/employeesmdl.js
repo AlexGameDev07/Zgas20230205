@@ -26,6 +26,7 @@ const employeesSchema = new Schema(
     },
     birthday: {
       type: Date,
+      default: Date.now, // Valor por defecto: fecha actual
     },
     email: {
       type: String,
@@ -35,6 +36,7 @@ const employeesSchema = new Schema(
     },
     hireDate: {
       type: Date,
+      default: Date.now, // Valor por defecto: fecha actual
     },
     password: {
       type: String,

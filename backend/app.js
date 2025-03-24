@@ -6,12 +6,16 @@ import customersRoutes from '../backend/src/routes/customers.js';
 import employeesRoutes from '../backend/src/routes/employees.js';
 import reviewsRoutes from '../backend/src/routes/reviews.js';
 import evaluationsRoutes from '../backend/src/routes/evaluations.js';
-import registerEmployeesRoutes from '../backend/src/routes/registerEmployees.js';
+import registerEmployeesRoutes from './src/routes/registerEmployeesRoutes.js';
+import cookieParser from 'cookie-parser';
 //Create a new express app instance
 const app = express();
 
 //middlewares
 app.use(express.json());
+
+//Para que acepte coockies en postman
+app.use(cookieParser());
 
 //Routes of the API
 app.use("/api/products", productsRoutes)

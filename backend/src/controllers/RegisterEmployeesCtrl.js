@@ -1,11 +1,20 @@
 import EmployeeMdl from "../models/employeesmdl.js";
 import bcryptjs from "bcryptjs";
+import jsonwebtoken from "jsonwebtoken";
 import { config } from "../config.js";
 
 const registerEmployeesCtrl = {};
 
 registerEmployeesCtrl.register = async (req, res) => {
     const { password, email, ...employeeData } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ msg: "Email and password are required" });
+    }
+
+    if (!config.jwt.JWT_SECRET) {
+        return res.status(500).json({ msg: "JWT secret is not configured" });
+    }
 
     try {
         //Verify if the employee is already registered
@@ -27,7 +36,18 @@ registerEmployeesCtrl.register = async (req, res) => {
 
         await newEmployee.save();
 
-        return res.status(201).json({ msg: "Employee registered successfully" });
+        //* create the token
+        try {
+            const token = jsonwebtoken.sign(
+                { id: newEmployee._id },
+                config.jwt.JWT_SECRET,
+                { expiresIn: config.jwt.expiresIn }
+            );
+            res.cookie("authToken", token);
+            return res.status(201).json({ msg: "Employee registered successfully", token });
+        } catch (err) {
+            return res.status(500).json({ msg: "Error generating token", error: err.message });
+        }
     } catch (err) {
         return res.status(500).json({ msg: err.message });
     }
