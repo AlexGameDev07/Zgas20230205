@@ -6,6 +6,7 @@ import customersRoutes from '../backend/src/routes/customers.js';
 import employeesRoutes from '../backend/src/routes/employees.js';
 import reviewsRoutes from '../backend/src/routes/reviews.js';
 import evaluationsRoutes from '../backend/src/routes/evaluations.js';
+import registerEmployeesRoutes from '../backend/src/routes/registerEmployees.js';
 //Create a new express app instance
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/api/customers", customersRoutes)
 app.use("/api/employees", employeesRoutes)
 app.use("/api/reviews", reviewsRoutes)
 app.use("/api/evaluations", evaluationsRoutes)
+app.use("/api/registerEmployees", registerEmployeesRoutes)
 
 //Define the port for the server
 export default app;
