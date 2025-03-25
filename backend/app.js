@@ -7,6 +7,7 @@ import employeesRoutes from '../backend/src/routes/employees.js';
 import reviewsRoutes from '../backend/src/routes/reviews.js';
 import evaluationsRoutes from '../backend/src/routes/evaluations.js';
 import registerEmployeesRoutes from './src/routes/registerEmployeesRoutes.js';
+import loginRoutes from './src/routes/loginRoutes.js';
 import cookieParser from 'cookie-parser';
 //Create a new express app instance
 const app = express();
@@ -25,6 +26,7 @@ app.use("/api/employees", employeesRoutes)
 app.use("/api/reviews", reviewsRoutes)
 app.use("/api/evaluations", evaluationsRoutes)
 app.use("/api/registerEmployees", registerEmployeesRoutes)
+app.use("/api/login", loginRoutes)
 
 //Define the port for the server
 export default app;
