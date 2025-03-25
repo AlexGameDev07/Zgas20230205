@@ -38,7 +38,7 @@ loginCtrl.login = async (req, res) => {
         }
 
         if (userType !== "admin") {
-            const isMatch = bcrypt.compare(password, userFound.password);
+            const isMatch = await bcrypt.compare(password, userFound.password);
             if (!isMatch) {
                 return res.status(400).json({ message: "Invalid credentials" });
             }
