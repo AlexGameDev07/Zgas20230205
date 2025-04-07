@@ -38,7 +38,7 @@ customersControllers.putCustomer = async (req, res) => {
 //*DELETE
 customersControllers.deleteCustomer = async (req, res) => {
    try {
-      await customersModel.findByIdAndDelete(req.params.id);
+      await customersmdl.findByIdAndDelete(req.params.id);
       res.status(200).json({ message: "Employe deleted successfully" });
    }
    catch (error) {
