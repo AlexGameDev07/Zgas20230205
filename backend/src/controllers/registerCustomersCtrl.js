@@ -37,7 +37,7 @@ const sendVerificationEmail = async (email, verificationCode, otherDetails) => {
                 </header>
                 <main style="padding: 20px; text-align: center;">
                     <p style="color: #333; font-size: 16px;">Para completar tu registro, por favor verifica tu correo electrónico utilizando el siguiente código:</p>
-                    <div style="margin: 20px 0; padding: 10px; background-color: #e8f5e9; border: 1px solid #4CAF50; border-radius: 5px; display: inline-block;">
+                    <div style="margin: 20px 0; padding: 10px; background-color: #e8f5e9; border: 1px solid #4CAF50; border-radius: 5px; display: inline-block; align-self: center; justify-self: center;">
                         <h2 style="color: #4CAF50; font-size: 28px; margin: 0;">${verificationCode}</h2>
                     </div>
                     <p style="color: #555; font-size: 14px;">Este código es válido por 2 horas. Si no solicitaste este correo, por favor ignóralo.</p>
