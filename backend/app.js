@@ -11,6 +11,7 @@ import loginRoutes from './src/routes/loginRoutes.js';
 import logoutRoutes from './src/routes/logoutRoutes.js';
 import registerCustomersRoutes from './src/routes/registerCustomersRoutes.js';
 import cookieParser from 'cookie-parser';
+import passwordRecoveryRoutes from './src/routes/passRecoverRoutes.js';
 //Create a new express app instance
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/api/login", loginRoutes)
 app.use("/api/logout", logoutRoutes)
 
 app.use("/api/registerCustomers", registerCustomersRoutes)
+app.use("/api/passwordRecovery", passwordRecoveryRoutes)
 
 //Define the port for the server
 export default app;

@@ -31,7 +31,7 @@ const sendEmail = async (to, subject, text, html) => {
 
     try {
         const info = await transporter.sendMail({
-            from: '"Soporte Zgas Alejandro Murcia" <alekeymurcia@gmail.com>',
+            from: `"Soporte Zgas Alejandro Murcia" <${config.user.EMAIL}>`,
             to,
             subject,
             text,
@@ -55,17 +55,30 @@ const HTMLRecoveryEmail = (code) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Recuperación de Contraseña</title>
         <style>
+            @keyframes glow {
+                0% {
+                    text-shadow: 0 0 5px #00f2ff, 0 0 10px #00f2ff, 0 0 20px #00f2ff, 0 0 30px #00f2ff;
+                }
+                50% {
+                    text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff, 0 0 40px #00f2ff, 0 0 60px #00f2ff;
+                }
+                100% {
+                    text-shadow: 0 0 5px #00f2ff, 0 0 10px #00f2ff, 0 0 20px #00f2ff, 0 0 30px #00f2ff;
+                }
+            }
+
             body {
                 background-color: #0a0a0a;
                 font-family: 'Arial', sans-serif;
                 margin: 0;
                 padding: 0;
+                color: #e0e0e0;
             }
             .container {
                 max-width: 600px;
                 margin: 20px auto;
                 padding: 30px;
-                background-color: #141414;
+                background: linear-gradient(145deg, #141414, #1a1a1a);
                 border-radius: 15px;
                 box-shadow: 0 0 20px rgba(66, 220, 219, 0.2);
             }
@@ -74,14 +87,15 @@ const HTMLRecoveryEmail = (code) => {
                 margin-bottom: 30px;
             }
             .logo {
-                font-size: 32px;
+                font-size: 36px;
                 color: #fff;
                 text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
                 margin-bottom: 20px;
+                font-weight: bold;
             }
             h1 {
                 color: #fff;
-                font-size: 24px;
+                font-size: 28px;
                 margin-bottom: 20px;
                 text-shadow: 0 0 5px rgba(66, 220, 219, 0.5);
             }
@@ -100,11 +114,28 @@ const HTMLRecoveryEmail = (code) => {
                 margin: 30px 0;
             }
             .code {
-                font-size: 32px;
+                font-size: 36px;
                 letter-spacing: 5px;
                 color: #00f2ff;
                 font-weight: bold;
-                text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+                animation: glow 1.5s infinite;
+            }
+            .button {
+                display: inline-block;
+                padding: 15px 30px;
+                margin-top: 20px;
+                background-color: #00f2ff;
+                color: #0a0a0a;
+                font-size: 16px;
+                font-weight: bold;
+                text-decoration: none;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            .button:hover {
+                background-color: #00c2cc;
+                transform: scale(1.05);
             }
             .footer {
                 text-align: center;
@@ -137,6 +168,8 @@ const HTMLRecoveryEmail = (code) => {
             
             <p>Este código expirará en 15 minutos por razones de seguridad. Si no solicitaste este cambio, por favor ignora este mensaje.</p>
             
+            <a href="#" class="button">Restablecer Contraseña</a>
+            
             <div class="warning">
                 * No compartas este código con nadie. Nuestro equipo nunca te pedirá este código.
             </div>
@@ -153,7 +186,7 @@ const HTMLRecoveryEmail = (code) => {
 
 // Verificar la conexión al iniciar
 transporter.verify()
-    .then(() => console.log('Ready to send emails'))
-    .catch(error => console.error('Error with email configuration:', error));
+    .then(() => console.log('SMTP connection successful'))
+    .catch(error => console.error('SMTP connection error:', error));
 
 export {sendEmail, HTMLRecoveryEmail};
