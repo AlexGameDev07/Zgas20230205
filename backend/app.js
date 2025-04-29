@@ -1,5 +1,6 @@
 //import necessary modules
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import productsRoutes from '../backend/src/routes/products.js';
 import branchesRoutes from '../backend/src/routes/branches.js';
 import customersRoutes from '../backend/src/routes/customers.js';
@@ -10,7 +11,6 @@ import registerEmployeesRoutes from './src/routes/registerEmployeesRoutes.js';
 import loginRoutes from './src/routes/loginRoutes.js';
 import logoutRoutes from './src/routes/logoutRoutes.js';
 import registerCustomersRoutes from './src/routes/registerCustomersRoutes.js';
-import cookieParser from 'cookie-parser';
 import passwordRecoveryRoutes from './src/routes/passRecoverRoutes.js';
 //Create a new express app instance
 const app = express();

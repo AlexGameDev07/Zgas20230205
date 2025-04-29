@@ -20,5 +20,5 @@ export const config = {
     user:{
         EMAIL: process.env.EMAIL_USER,
         PASSWORD: process.env.EMAIL_USER_PASSWORD
-    },
+    }
 }
