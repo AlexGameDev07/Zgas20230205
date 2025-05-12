@@ -12,6 +12,7 @@ import loginRoutes from './src/routes/loginRoutes.js';
 import logoutRoutes from './src/routes/logoutRoutes.js';
 import registerCustomersRoutes from './src/routes/registerCustomersRoutes.js';
 import passwordRecoveryRoutes from './src/routes/passRecoverRoutes.js';
+import blogRoutes from './src/routes/blogRoutes.js';
 //Create a new express app instance
 const app = express();
 
@@ -34,6 +35,8 @@ app.use("/api/logout", logoutRoutes)
 
 app.use("/api/registerCustomers", registerCustomersRoutes)
 app.use("/api/passwordRecovery", passwordRecoveryRoutes)
+
+app.use("/api/blog", blogRoutes)
 
 //Define the port for the server
 export default app;
