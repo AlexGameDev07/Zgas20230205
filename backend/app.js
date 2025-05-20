@@ -1,4 +1,5 @@
 //import necessary modules
+import cors from 'cors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import productsRoutes from '../backend/src/routes/products.js';
@@ -17,6 +18,11 @@ import { validateAuthToken } from './src/middlewares/validateAuthTokenMdw.js';
 //Create a new express app instance
 const app = express();
 
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+}));
 //middlewares
 app.use(express.json());
 
@@ -24,7 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Routes of the API
-app.use("/api/products", validateAuthToken(["employee", "admin"]), productsRoutes)
+app.use("/api/products", productsRoutes)
 app.use("/api/branches", branchesRoutes)
 app.use("/api/customers", customersRoutes)
 app.use("/api/employees", employeesRoutes)
