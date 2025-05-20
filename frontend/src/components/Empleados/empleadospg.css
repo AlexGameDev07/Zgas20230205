@@ -1,0 +1,195 @@
+.empleados-pg {
+    margin-left: 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+.empleados-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.add-btn {
+    background: #00f2ff;
+    color: #0a0a0a;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00f2ff88;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.add-btn:hover {
+    background: #00c2cc;
+    transform: scale(1.05);
+}
+
+.modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 10, 30, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: rgba(255,255,255,0.09);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 0 30px #00f2ff44;
+    min-width: 320px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.empleado-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.empleado-form input {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.empleado-form input:focus {
+    border-color: #00f2ff;
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    background-color: #00f2ff;
+    color: #0a0a0a;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #00c2cc;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #444;
+    transform: scale(1.05);
+}
+
+/* Lista y card de empleados */
+.empleados-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empleados-list-empty {
+    text-align: center;
+    color: #00f2ff;
+    margin-top: 40px;
+    font-size: 1.2rem;
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 30px 0;
+    border: 1px solid rgba(0,242,255,0.2);
+    box-shadow: 0 0 10px rgba(0,242,255,0.15);
+}
+
+.empleado-card {
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,242,255,0.15);
+    padding: 20px;
+    margin: 15px 0;
+    color: #e0e0e0;
+    border: 1px solid rgba(0,242,255,0.2);
+    transition: box-shadow 0.3s;
+}
+
+.empleado-card:hover {
+    box-shadow: 0 0 20px #00f2ff88;
+}
+
+.label {
+    color: #00f2ff;
+    font-weight: bold;
+}
+
+.actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary {
+    background: #00f2ff;
+    color: #0a0a0a;
+}
+
+.btn-primary:hover {
+    background: #00c2cc;
+}
+
+.btn-danger {
+    background: #ff4b4b;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #ff1f1f;
+}
