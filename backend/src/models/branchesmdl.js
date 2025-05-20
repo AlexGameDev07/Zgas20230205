@@ -8,7 +8,7 @@
 
 import { Schema, model } from "mongoose";
 
-const customersSchema = new Schema(
+const branchesSchema = new Schema(
      {
           name: {
                type: String,
@@ -30,4 +30,4 @@ const customersSchema = new Schema(
      }
 );
 
-export default model("Customers", customersSchema);
+export default model("Branches", branchesSchema);

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Empleados from './pages/empleadospg';
-import Sucursales from './pages/sucursalespg';
+import Sucursales from './pages/branchespg';
 import Productos from './pages/productospg';
 import './App.css';
 
