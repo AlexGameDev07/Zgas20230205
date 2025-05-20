@@ -13,6 +13,7 @@ import logoutRoutes from './src/routes/logoutRoutes.js';
 import registerCustomersRoutes from './src/routes/registerCustomersRoutes.js';
 import passwordRecoveryRoutes from './src/routes/passRecoverRoutes.js';
 import blogRoutes from './src/routes/blogRoutes.js';
+import { validateAuthToken } from './src/middlewares/validateAuthTokenMdw.js';
 //Create a new express app instance
 const app = express();
 
@@ -23,11 +24,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Routes of the API
-app.use("/api/products", productsRoutes)
+app.use("/api/products", validateAuthToken(["employee", "admin"]), productsRoutes)
 app.use("/api/branches", branchesRoutes)
 app.use("/api/customers", customersRoutes)
 app.use("/api/employees", employeesRoutes)
-app.use("/api/reviews", reviewsRoutes)
+app.use("/api/reviews", validateAuthToken(["employee"]), reviewsRoutes)
 app.use("/api/evaluations", evaluationsRoutes)
 app.use("/api/registerEmployees", registerEmployeesRoutes)
 app.use("/api/login", loginRoutes)

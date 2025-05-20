@@ -28,25 +28,154 @@ const sendVerificationEmail = async (email, verificationCode, otherDetails) => {
     const mailOptions = {
         from: config.user.EMAIL,
         to: email,
-        subject: '¡Verifica tu correo electrónico!',
+        subject: '¡Verifica tu correo electrónico en Cinemark!',
         html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
-                <header style="text-align: center; padding-bottom: 20px; border-bottom: 1px solid #ddd;">
-                    <h1 style="color: #4CAF50; font-size: 24px;">¡Bienvenido, ${otherDetails.name || 'Usuario'}!</h1>
-                    <p style="color: #555; font-size: 16px;">Estamos emocionados de que te unas a nuestra plataforma.</p>
-                </header>
-                <main style="padding: 20px; text-align: center;">
-                    <p style="color: #333; font-size: 16px;">Para completar tu registro, por favor verifica tu correo electrónico utilizando el siguiente código:</p>
-                    <div style="margin: 20px 0; padding: 10px; background-color: #e8f5e9; border: 1px solid #4CAF50; border-radius: 5px; display: inline-block; align-self: center; justify-self: center;">
-                        <h2 style="color: #4CAF50; font-size: 28px; margin: 0;">${verificationCode}</h2>
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Verificación de Correo</title>
+                <style>
+                    @keyframes glow {
+                        0% {
+                            box-shadow: 0 0 5px #00f2ff, 0 0 10px #00f2ff, 0 0 20px #00f2ff, 0 0 30px #00f2ff;
+                        }
+                        50% {
+                            box-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff, 0 0 40px #00f2ff, 0 0 60px #00f2ff;
+                        }
+                        100% {
+                            box-shadow: 0 0 5px #00f2ff, 0 0 10px #00f2ff, 0 0 20px #00f2ff, 0 0 30px #00f2ff;
+                        }
+                    }
+
+                    body {
+                        background-color: #0a0a0a;
+                        font-family: 'Arial', sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        color: #e0e0e0;
+                    }
+
+                    .container {
+                        max-width: 600px;
+                        margin: 20px auto;
+                        padding: 30px;
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 15px;
+                        box-shadow: 0 0 20px rgba(66, 220, 219, 0.2);
+                        backdrop-filter: blur(10px);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                    }
+
+                    .header {
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+
+                    .logo {
+                        font-size: 36px;
+                        color: #fff;
+                        text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+                        margin-bottom: 20px;
+                        font-weight: bold;
+                    }
+
+                    h1 {
+                        color: #fff;
+                        font-size: 28px;
+                        margin-bottom: 20px;
+                        text-shadow: 0 0 5px rgba(66, 220, 219, 0.5);
+                    }
+
+                    p {
+                        color: #e0e0e0;
+                        line-height: 1.6;
+                        margin-bottom: 20px;
+                    }
+
+                    .code-container {
+                        background-color: rgba(0, 0, 0, 0.5);
+                        padding: 20px;
+                        border-radius: 10px;
+                        border: 1px solid #00f2ff;
+                        box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+                        text-align: center;
+                        margin: 30px 0;
+                    }
+
+                    .code {
+                        font-size: 36px;
+                        letter-spacing: 5px;
+                        color: #00f2ff;
+                        font-weight: bold;
+                        animation: glow 1.5s infinite;
+                    }
+
+                    .button {
+                        display: inline-block;
+                        padding: 15px 30px;
+                        margin-top: 20px;
+                        background-color: #00f2ff;
+                        color: #0a0a0a;
+                        font-size: 16px;
+                        font-weight: bold;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+                        transition: background-color 0.3s ease, transform 0.3s ease;
+                    }
+
+                    .button:hover {
+                        background-color: #00c2cc;
+                        transform: scale(1.05);
+                    }
+
+                    .footer {
+                        text-align: center;
+                        color: #666;
+                        font-size: 12px;
+                        margin-top: 30px;
+                        padding-top: 20px;
+                        border-top: 1px solid #333;
+                    }
+
+                    .warning {
+                        color: #ff4b4b;
+                        font-size: 12px;
+                        margin-top: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <div class="logo">Cinemark</div>
+                        <h1>¡Verifica tu correo electrónico!</h1>
                     </div>
-                    <p style="color: #555; font-size: 14px;">Este código es válido por 2 horas. Si no solicitaste este correo, por favor ignóralo.</p>
-                </main>
-                <footer style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 12px; color: #777;">
-                    <p>© 2025 Tu Empresa. Todos los derechos reservados.</p>
-                    <p style="margin: 0;">¿Necesitas ayuda? <a href="mailto:soporte@tuempresa.com" style="color: #4CAF50; text-decoration: none;">Contáctanos</a></p>
-                </footer>
-            </div>
+                    
+                    <p>Hola, ${otherDetails.name || 'Usuario'},</p>
+                    <p>Gracias por registrarte en Cinemark. Para completar tu registro, utiliza el siguiente código de verificación:</p>
+                    
+                    <div class="code-container">
+                        <div class="code">${verificationCode}</div>
+                    </div>
+                    
+                    <p>Este código es válido por 2 horas. Si no solicitaste este correo, por favor ignóralo.</p>
+                    
+                    <a href="#" class="button">Verificar mi cuenta</a>
+                    
+                    <div class="warning">
+                        * No compartas este código con nadie. Nuestro equipo nunca te pedirá este código.
+                    </div>
+                    
+                    <div class="footer">
+                        © ${new Date().getFullYear()} Cinemark. Todos los derechos reservados.<br>
+                        Este es un mensaje automático, por favor no responder.
+                    </div>
+                </div>
+            </body>
+            </html>
         `
     };
 
