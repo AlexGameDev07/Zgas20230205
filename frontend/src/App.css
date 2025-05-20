@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a; /* Fondo oscuro */
+    color: #e0e0e0;
+    overflow: hidden; /* Evita scroll innecesario en el body */
+}
+
+.app-container {
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+.side-nav {
+    width: 250px; /* Ancho fijo para el NavBar */
+    flex-shrink: 0; /* Evita que el NavBar se reduzca */
+    background: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Efecto glassy */
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Borde brillante */
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); /* Sombra neón */
+    z-index: 1; /* Asegura que el NavBar esté por encima del contenido */
+    position: relative; /* Mantiene el NavBar en su lugar */
+}
+
+.content-container {
+    flex: 1; /* Ocupa el espacio restante al lado del NavBar */
+    display: flex;
+    flex-direction: column; /* Permite que el contenido fluya verticalmente */
+    justify-content: flex-start; /* Alinea el contenido al inicio */
+    align-items: flex-start; /* Alinea el contenido al inicio horizontalmente */
+    padding: 20px;
+    overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+    background: rgba(255, 255, 255, 0.05); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Efecto glassy */
+    border-radius: 15px;
+    margin: 20px;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); /* Sombra neón */
+    z-index: 0; /* Asegura que el contenido esté detrás del NavBar */
+}

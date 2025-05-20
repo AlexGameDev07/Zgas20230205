@@ -1,0 +1,52 @@
+.producto-card {
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,242,255,0.15);
+    padding: 20px;
+    margin: 15px 0;
+    color: #e0e0e0;
+    border: 1px solid rgba(0,242,255,0.2);
+    transition: box-shadow 0.3s;
+}
+
+.producto-card:hover {
+    box-shadow: 0 0 20px #00f2ff88;
+}
+
+.label {
+    color: #00f2ff;
+    font-weight: bold;
+}
+
+.actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary {
+    background: #00f2ff;
+    color: #0a0a0a;
+}
+
+.btn-primary:hover {
+    background: #00c2cc;
+}
+
+.btn-danger {
+    background: #ff4b4b;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #ff1f1f;
+}

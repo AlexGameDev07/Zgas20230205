@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a; /* Fondo oscuro */
+    color: #e0e0e0;
+}
+
+.productos-pg {
+    margin-left: 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05); /* Fondo translúcido */
+    backdrop-filter: blur(10px); /* Efecto glassy */
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #006eff;
+    margin-bottom: 30px;
+}
+
+.productos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.add-btn {
+    background: #00f2ff;
+    color: #0a0a0a;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00f2ff88;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.add-btn:hover {
+    background: #00c2cc;
+    transform: scale(1.05);
+}
+
+.modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 10, 30, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: rgba(255,255,255,0.09);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 0 30px #00f2ff44;
+    min-width: 320px;
+    max-width: 90vw;
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-form input,
+.product-form textarea {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.product-form input:focus,
+.product-form textarea:focus {
+    border-color: #00f2ff;
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #00f2ff;
+    color: #0a0a0a;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #00c2cc;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #444;
+    transform: scale(1.05);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
