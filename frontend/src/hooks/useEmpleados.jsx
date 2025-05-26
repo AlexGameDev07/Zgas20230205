@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchData } from "../api/fetchData";
 
 const initialForm = {
     name: "",
@@ -21,12 +22,12 @@ export default function useEmpleados() {
     const [editId, setEditId] = useState(null);
 
     const fetchEmpleados = () => {
-        fetch("http://localhost:4000/api/employees")
-            .then(res => res.json())
+        fetchData({ resource: "employees" })
             .then(data => setEmpleados(data))
             .catch(() => setEmpleados([]));
     };
 
+    
     useEffect(() => {
         fetchEmpleados();
     }, []);
@@ -39,12 +40,12 @@ export default function useEmpleados() {
     const handleAddEmpleado = (e) => {
         e.preventDefault();
         if (editId) {
-            fetch(`http://localhost:4000/api/employees/${editId}`, {
+            fetchData({
+                resource: "employees",
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                id: editId,
+                body: form,
             })
-                .then(res => res.json())
                 .then(() => {
                     fetchEmpleados();
                     setForm(initialForm);
@@ -52,12 +53,11 @@ export default function useEmpleados() {
                     setEditId(null);
                 });
         } else {
-            fetch("http://localhost:4000/api/employees", {
+            fetchData({
+                resource: "employees",
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                body: form,
             })
-                .then(res => res.json())
                 .then(() => {
                     fetchEmpleados();
                     setForm(initialForm);
@@ -85,8 +85,10 @@ export default function useEmpleados() {
     };
 
     const handleDelete = (empleado) => {
-        fetch(`http://localhost:4000/api/employees/${empleado._id}`, {
+        fetchData({
+            resource: "employees",
             method: "DELETE",
+            id: empleado._id,
         })
             .then(() => {
                 fetchEmpleados();

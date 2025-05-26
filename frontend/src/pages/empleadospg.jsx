@@ -53,6 +53,8 @@ const EmpleadosPg = () => {
                 <EmpleadosList empleados={empleados} onEdit={handleEdit} onDelete={handleDelete} />
             </div>
             <Modal
+
+            
                 isOpen={showModal}
                 onRequestClose={handleCloseModal}
                 className="modal-content"

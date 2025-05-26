@@ -19,7 +19,7 @@ import { validateAuthToken } from './src/middlewares/validateAuthTokenMdw.js';
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://zgas20230205.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
 }));
@@ -29,7 +29,7 @@ app.use(express.json());
 //Para que acepte coockies en postman
 app.use(cookieParser());
 
-//Routes of the API
+//Routes of the API2
 app.use("/api/products", productsRoutes)
 app.use("/api/branches", branchesRoutes)
 app.use("/api/customers", customersRoutes)

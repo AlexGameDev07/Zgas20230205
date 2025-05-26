@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchData } from "../api/fetchData";
 
 const initialForm = {
     name: "",
@@ -14,8 +15,7 @@ export default function useProductos() {
     const [editId, setEditId] = useState(null);
 
     const fetchProductos = () => {
-        fetch("http://localhost:4000/api/products")
-            .then(res => res.json())
+        fetchData({ resource: "products" })
             .then(data => setProductos(data))
             .catch(() => setProductos([]));
     };
@@ -32,12 +32,12 @@ export default function useProductos() {
     const handleAddProduct = (e) => {
         e.preventDefault();
         if (editId) {
-            fetch(`http://localhost:4000/api/products/${editId}`, {
+            fetchData({
+                resource: "products",
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                id: editId,
+                body: form,
             })
-                .then(res => res.json())
                 .then(() => {
                     fetchProductos();
                     setForm(initialForm);
@@ -45,12 +45,11 @@ export default function useProductos() {
                     setEditId(null);
                 });
         } else {
-            fetch("http://localhost:4000/api/products", {
+            fetchData({
+                resource: "products",
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                body: form,
             })
-                .then(res => res.json())
                 .then(() => {
                     fetchProductos();
                     setForm(initialForm);
@@ -71,8 +70,10 @@ export default function useProductos() {
     };
 
     const handleDelete = (producto) => {
-        fetch(`http://localhost:4000/api/products/${producto._id}`, {
+        fetchData({
+            resource: "products",
             method: "DELETE",
+            id: producto._id,
         })
             .then(() => {
                 fetchProductos();

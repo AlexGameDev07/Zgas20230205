@@ -21,7 +21,7 @@ function App() {
         {showNavBar() && <NavBar />}
         <div className="content-container">
           <Routes>
-            <Route path="/" element={<Empleados />} />
+            <Route path="/" element={<Sucursales />} />
             <Route path="/Branches" element={<Sucursales />} />
             <Route path="/Products" element={<Productos />} />
             <Route path="/Employee" element={<Empleados />} />

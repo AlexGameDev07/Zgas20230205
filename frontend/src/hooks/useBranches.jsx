@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchData } from "../api/fetchData";
 
 const initialForm = {
     name: "",
@@ -14,8 +15,7 @@ export default function useBranches() {
     const [editId, setEditId] = useState(null);
 
     const fetchBranches = () => {
-        fetch("http://localhost:4000/api/branches")
-            .then(res => res.json())
+        fetchData({ resource: "branches" })
             .then(data => setBranches(data))
             .catch(() => setBranches([]));
     };
@@ -32,12 +32,12 @@ export default function useBranches() {
     const handleAddBranch = (e) => {
         e.preventDefault();
         if (editId) {
-            fetch(`http://localhost:4000/api/branches/${editId}`, {
+            fetchData({
+                resource: "branches",
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                id: editId,
+                body: form,
             })
-                .then(res => res.json())
                 .then(() => {
                     fetchBranches();
                     setForm(initialForm);
@@ -45,12 +45,11 @@ export default function useBranches() {
                     setEditId(null);
                 });
         } else {
-            fetch("http://localhost:4000/api/branches", {
+            fetchData({
+                resource: "branches",
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                body: form,
             })
-                .then(res => res.json())
                 .then(() => {
                     fetchBranches();
                     setForm(initialForm);
@@ -71,8 +70,10 @@ export default function useBranches() {
     };
 
     const handleDelete = (branch) => {
-        fetch(`http://localhost:4000/api/branches/${branch._id}`, {
+        fetchData({
+            resource: "branches",
             method: "DELETE",
+            id: branch._id,
         })
             .then(() => {
                 fetchBranches();
