@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #0a0a0a; /* Fondo oscuro */
+    background-color: #0a0a0a;
     color: #e0e0e0;
 }
 
@@ -11,14 +11,15 @@ body {
     left: 0;
     height: 100%;
     width: 250px;
-    background: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
-    backdrop-filter: blur(10px); /* Efecto glassy */
-    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Borde brillante */
-    
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
+    z-index: 1001;
+    transition: left 0.3s;
 }
 
 .logo {
@@ -26,6 +27,29 @@ body {
     font-weight: bold;
     color: #006eff;
     margin-bottom: 30px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    z-index: 1100;
+}
+
+.hamburger .bar {
+    width: 28px;
+    height: 4px;
+    background: #00f2ff;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: all 0.3s;
 }
 
 .nav-links {
@@ -51,12 +75,49 @@ body {
 }
 
 .nav-links a:hover {
-    background-color: rgba(0, 242, 255, 0.2); /* Fondo al pasar el cursor */
+    background-color: rgba(0, 242, 255, 0.2);
     color: #006eff;
-    box-shadow: 0 0 10px rgba(0, 242, 255, 0.5); /* Efecto neón */
-    transform: scale(1.05); /* Animación de escala */
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+    transform: scale(1.05);
 }
 
 .nav-links a:active {
-    transform: scale(0.95); /* Efecto al hacer clic */
+    transform: scale(0.95);
+}
+
+/* Overlay para menú móvil */
+.nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,30,0.5);
+    z-index: 1000;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .side-nav {
+        left: -260px;
+        width: 220px;
+        padding: 15px 0;
+        transition: left 0.3s;
+    }
+    .side-nav.open {
+        left: 0;
+    }
+    .hamburger {
+        display: flex;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 40px;
+    }
+    .nav-links.show {
+        display: flex;
+    }
 }
