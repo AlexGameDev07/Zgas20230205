@@ -53,7 +53,7 @@ blogCtrl.createBlog = async (req, res) => {
                 use_filename: true,
                 unique_filename: false,
                 overwrite: true,
-                allowed_formats: ["jpg", "png", "jpeg"]
+                allowed_formats: ["jpg", "png", "jpeg", "pdf"]
             });
             imageUrl = result.secure_url;
         }
