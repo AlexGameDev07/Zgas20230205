@@ -6,7 +6,7 @@
     import employeesmdl from "../models/employeesmdl.js";
 
     const loginCtrl = {}
-
+    
     loginCtrl.login = async (req, res) => {
         const { email, password } = req.body;
         try {
