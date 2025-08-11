@@ -39,7 +39,7 @@ passwordRecoveryCtrl.requestCode = async (req, res) => {
         const token = jsonwebtoken.sign(
             { email, verificationCode, userType, verified: false },
             config.jwt.JWT_SECRET,
-            { expiresIn: TOKEN_EXPIRATION_SHORT }
+            { EXPIRES_IN: TOKEN_EXPIRATION_SHORT }
         );
 
         // Configurar cookie y enviar respuesta
@@ -87,7 +87,7 @@ passwordRecoveryCtrl.verifyCode = async (req, res) => {
         const newToken = jsonwebtoken.sign(
             { email: decoded.email, userType: decoded.userType, verified: true },
             config.jwt.JWT_SECRET,
-            { expiresIn: TOKEN_EXPIRATION_LONG }
+            { EXPIRES_IN: TOKEN_EXPIRATION_LONG }
         );
 
         // Configurar nueva cookie y enviar respuesta

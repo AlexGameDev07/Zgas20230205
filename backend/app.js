@@ -16,6 +16,7 @@ import passwordRecoveryRoutes from './src/routes/passRecoverRoutes.js';
 import blogRoutes from './src/routes/blogRoutes.js';
 import { validateAuthToken } from './src/middlewares/validateAuthTokenMdw.js';
 import faqRoutes from './src/routes/FaqRoutes.js';
+import SalesRouter from './src/routes/SalesRoutes.js';
 
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
@@ -54,6 +55,7 @@ app.use("/api/evaluations", evaluationsRoutes)
 app.use("/api/registerEmployees", registerEmployeesRoutes)
 app.use("/api/login", loginRoutes)
 app.use("/api/logout", logoutRoutes)
+app.use("/api/sales", SalesRouter) //Sales routes
 
 app.use("/api/registerCustomers", registerCustomersRoutes)
 app.use("/api/passwordRecovery", passwordRecoveryRoutes)

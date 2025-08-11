@@ -49,7 +49,7 @@
                 const token = JsonWebToken.sign(
                     { id: userFound._id, userType },
                     config.jwt.JWT_SECRET,
-                    { expiresIn: config.jwt.expiresIn }
+                    { EXPIRES_IN: config.jwt.EXPIRES_IN }
                 );
                 res.cookie("authToken", token);
                 return res.status(201).json({ msg: "Login successful" });

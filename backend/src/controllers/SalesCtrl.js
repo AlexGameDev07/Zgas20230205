@@ -99,4 +99,27 @@ salesCtrl.getTotalSales = async (req, res) => {
     }
 }
 
+//Top 5 clientes
+salesCtrl.getTopCustomers = async (req, res) => {
+    try {
+        const resultado = await SalesMdl.aggregate([
+            {
+                $group: {
+                    _id: '$customer',
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { count: -1 }
+            },
+            {
+                $limit: 5
+            }
+        ]);
+        res.status(200).json(resultado);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 export default salesCtrl;

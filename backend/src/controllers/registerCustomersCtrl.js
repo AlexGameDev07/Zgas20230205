@@ -12,7 +12,7 @@ const generateToken = (email, verificationCode) => {
     return jsonwebtoken.sign(
         { email, verificationCode },
         config.jwt.JWT_SECRET,
-        { expiresIn: "2h" }
+        { EXPIRES_IN: "2h" }
     );
 };
 

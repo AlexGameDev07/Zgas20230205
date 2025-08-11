@@ -41,7 +41,7 @@ registerEmployeesCtrl.register = async (req, res) => {
             const token = jsonwebtoken.sign(
                 { id: newEmployee._id },
                 config.jwt.JWT_SECRET,
-                { expiresIn: config.jwt.expiresIn }
+                { EXPIRES_IN: config.jwt.EXPIRES_IN }
             );
             res.cookie("authToken", token);
             return res.status(201).json({ msg: "Employee registered successfully", token });
