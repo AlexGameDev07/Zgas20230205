@@ -33,15 +33,37 @@
                 }
 
             }
+
             if (!userFound) {
-                return res.status(404).json({ password: password, email: email });
+                return res.status(404).json({ password: password, email: email, message: "Usuario no encontrado" });
             }
 
+            //Coso para ver si el user no está bloqueado
+            if(userType !== "admin"){
+                if(userFound.lockTime > Date.now()){
+                    const timeLeft = Math.ceil( (userFound.lockTime - Date.now()) / 600000 )
+                    return res.status(403).json({ message: `Cuenta bloqueada. Intente de nuevo en ${timeLeft} minutos` });
+                }
+            }
             if (userType !== "admin") {
                 const isMatch = await bcrypt.compare(password, userFound.password);
                 if (!isMatch) {
+                    userFound.loginAttempts += 1;
+
+                    if (userFound.loginAttempts > 5){
+                        userFound.lockTime = Date.now() + 30 * 60000;
+                        await userFound.save();
+
+                        return res.status(403).json({ message: "Cuenta bloqueada por demasiados intentos fallidos. Intente de nuevo en 30 minutos" });
+                    }
+
+                    await userFound.save();
                     return res.status(400).json({ message: "Invalid credentials" });
                 }
+
+                userFound.loginAttempts = 0; //Resetea los intentos de login
+                userFound.lockTime = null; 
+                await userFound.save();
             }
 
             //* create the token
@@ -51,7 +73,11 @@
                     config.jwt.JWT_SECRET,
                     { EXPIRES_IN: config.jwt.EXPIRES_IN }
                 );
-                res.cookie("authToken", token);
+                res.cookie("authToken", token,{
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: "none" // Previene el envío de cookies en solicitudes cross-site
+                });
                 return res.status(201).json({ msg: "Login successful" });
             } catch (err) {
                 return res.status(500).json({ msg: "Error generating token", error: err.message });

@@ -11,6 +11,8 @@
  * dui
  * isssNumber
  * isVerified
+ * loginAttempts
+ * lockTime
  */
 
 import { Schema, model } from "mongoose";
@@ -55,6 +57,14 @@ const employeesSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    loginAttempts:{
+      type: Number,
+      default: 0
+    },
+    lockTime:{
+      type: Date,
+      default: null
+    }
   },
   {
     timestamps: true,
