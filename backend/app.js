@@ -22,13 +22,13 @@ import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
 import path from 'path';
 
+import limiter from './src/middlewares/rateLimiter.js';
+
 //Traemos el Json
 const swaggerDocument = JSON.parse(
     fs.readFileSync(path.resolve("./docs.json"), 'utf8')
 
 )
-
-
 
 //Create a new express app instance
 const app = express();
@@ -44,6 +44,9 @@ app.use(express.json());
 
 //Para que acepte coockies en postman
 app.use(cookieParser());
+
+//el limitador
+app.use(limiter);
 
 //Routes of the API2
 app.use("/api/products", productsRoutes)
